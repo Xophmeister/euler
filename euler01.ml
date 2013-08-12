@@ -2,10 +2,10 @@
    Find the sum of all the multiples of 3 or 5 below 1000.            *)
 
 let printAnswer t x =
-  print_string t;
-  print_string " Solution: ";
-  print_int    x;
-  print_newline;;
+  print_string  t;
+  print_string  " Solution: ";
+  print_int     x;
+  print_newline ();;
 
 (* Formulaic Solution
 
@@ -42,4 +42,4 @@ let sumFizzBuzz a b =
   List.fold_left (+) 0 (fizzBuzz a b);;
 
 let answer = sumFizzBuzz 1 999 in
-  printAnswer "FP" answer;
+  printAnswer "FP" answer;;
