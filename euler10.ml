@@ -24,19 +24,22 @@
 
    Let's try a good ol' Sieve of Eratosthenes...                      *)
 
-  let primes max =
-    let rec sieve toTest =
-      let h = List.hd toTest
-      and t = List.tl toTest in
-      let doesntDivide x = (x mod h <> 0) in
-      let nonDivisors = List.filter doesntDivide t in
-        if nonDivisors = [] then [h]
-                            else (h :: sieve nonDivisors) in
+let primes max =
+  let rec range a b =
+    if a > b then []
+             else a :: range (a + 1) b in
 
-    let rec range a b =
-      if a > b then []
-               else a :: range (a + 1) b in
+  let tail = ref (range 2 max)
+  and p    = ref [] in
 
-    let p = range 2 max in
+  while !tail <> [] do
+    let h = List.hd !tail
+    and t = List.tl !tail in
+    let doesntDivide x = (x mod h <> 0) in
+    let newTail = ref (List.filter doesntDivide t) in
 
-    sieve p;;
+    tail := !newTail;
+    p := h :: !p
+  done;
+  
+  !p;;
