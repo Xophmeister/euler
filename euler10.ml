@@ -12,7 +12,7 @@ let primes max =
                 let nonDivisors = List.filter doesntDivide t in
                 match nonDivisors with
                   | [] -> [h]
-                  | t  -> (h :: sieve nonDivisors) in
+                  | nd -> (h :: sieve nd) in
 
   let rec range memo a b =
     if a > b then memo
