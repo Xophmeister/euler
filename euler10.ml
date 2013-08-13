@@ -25,16 +25,13 @@
    Let's try a good ol' Sieve of Eratosthenes...                      *)
 
   let primes max =
-    let rec sieve found toTest =
+    let rec sieve toTest =
       let h = List.hd toTest
       and t = List.tl toTest in
-
-      let newPrimes = h :: found
-      and doesntDivide x = (x mod h <> 0) in
-
+      let doesntDivide x = (x mod h <> 0) in
       let nonDivisors = List.filter doesntDivide t in
-        if nonDivisors = [] then newPrimes
-                            else sieve newPrimes nonDivisors in
+        if nonDivisors = [] then [h]
+                            else (h :: sieve nonDivisors) in
 
     let rec range a b =
       if a > b then []
@@ -42,4 +39,4 @@
 
     let p = range 2 max in
 
-    sieve [] p;;
+    sieve p;;
