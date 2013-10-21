@@ -38,7 +38,11 @@ primes = 2 : sieve [3,5..]
 -- (This one's mine... It could probably do with some work!)
 -- x = (p1 ^ n1) * (p2 ^ n2) * ... * (pk ^ nk)
 data PrimeFactor = PrimeFactor Integer Int
-                   deriving (Show, Eq)
+                   deriving (Eq)
+
+instance Show PrimeFactor where
+  show (PrimeFactor p 1) = show p
+  show (PrimeFactor p n) = show p ++ "^" ++ show n
 
 factorise :: Integer -> [PrimeFactor]
 factorise 1 = [PrimeFactor 1 1]
